@@ -1,0 +1,124 @@
+Selenium
+
+13 August 2022
+08:59
+
+Types of Selenium tools:
+	1. Selenium IDE - Firefox Plugin used to record and playback the test steps. Not so useful in enterprised application.
+	2. Selenium Grid - Helps the user to run their automation systems in multiple systems simultaneously.
+	3. Selenium Webdriver - API
+	4. Selenium RC(Depricated from 3.x onwards)
+
+Installation of Selenium Webdriver using Maven
+Download Selenium from: https://mvnrepository.com/
+Directory: "repo1.maven.org/maven2"
+Maven is used to manage the dependencies of any app/tool.
+Selenium: We will create Maven+Java Project
+
+How Selenium works?
+With the help of browsers, we will communicate with the help of API calls, driver(browser specific).
+
+Driver: 
+	1. Establish the communication with the browser.
+	2. Each driver is available for different browser.
+	3. It also depends on the version of each browsers.
+
+WebDriverManager: To handle drivers for our selenium script
+WebdriverManager common codes for all browsers:
+WebDriverManager.chromedriver().setup();
+
+
+ChromeDriver: It is a class present inside the Selenium, helps the user to interact the user with the Chrome driver.
+Similarly for other drivers: FirefoxDriver/EdgeDriver/SafariDriver
+The Selenium scripts work only if we have its browser.
+
+Open a browser:
+ChromeDriver driver = new ChromeDriver();
+
+To load the URL:
+driver.get("<URL>");
+
+To maximize the browser:
+driver.manage().window().maximize();
+
+To Close the browser
+driver.close();
+
+
+To get the locators of an element: 
+	1. Right click on the element-> Inspect
+							
+Second way:
+	1. Go to DOM(fn+f12)-> Click on cursor tool 
+	2. Hover on the element which u want to inspect.
+
+DOM-> Document Object Model
+	1. Contains the source code of the webpage
+	2. It is Webpage developed in HTML format
+	3. <html>...</html> - We can write HTML code within this block only
+	4. <head>...</head> - used to configure headers and title of the webpage
+	5. <body>...</body> - used to manage the entire webpage content
+	6. <div>...</div> & <span>...</span> - used to create partition in a page
+	7. <input>...</input> - used to create text box, button.
+	8. <button>...</button> - used to create a button
+	9. <a> - Anchor tag: used to create a webpage
+
+Locator: The Concept of calling a particular element using a unique type.
+
+<input class="inputLogin" type="text" id="username"....
+Input -> tag name
+Class, type,id..-> attributes
+Attributes are key-value pair
+
+<label for="paasword">Password</label>
+Label->tag name
+For-> attribute
+Value->paasword
+Text-> the text between the tags which is used to display in the webpage.
+
+
+There are 8 different locators:
+	1. Id: id used in the source code (most preferred)
+		a. 
+	2. Name
+		a. 
+	3. Class name
+		a. 
+	4. Link : used when we find <a>.
+	5. Partial Link Text: Using a part of the link text if the locator is big.
+	6. Tag name
+	7. Xpath
+	8. Style sheet: css
+
+When not to use:
+	1. ID: When id has numbers.
+		a. E.g: username-123
+	2. Class: When there is space between the values.
+		a. 
+	3. Name: When there is duplicate values
+	4. Linktext/Partial Linktext: When the tag is not <a>
+
+In code:
+To find the element:  driver.findElement(By.id(""));
+The return type of findElement is Web Element.
+
+DropDown:
+	1. In HTML, DropDown will be created under <select> tag
+	2. <option> tag is used to create the options within the drop down
+
+To handle drop down:
+	1. Dropdown.sendkeys("<option_name>");
+	2. Using Select class: Select dd = new Select(Dropdown)
+		a. dd.selectByIndex(2) - Used to select values using index(index starts from 0);
+		b. dd.selectByVisibleText("Partner") - Used to select values using text of the tag.
+		c. dd.selectByValue("<option seen in value attribute>") - Used to select values using "value" attribute of the "option" tag.
+	3. Whenever we access new drop down, we need to create new object and mention which drop down we are accessing.
+		WebElement dropdown = driver.findElement(By....)
+		Select dd = new Select(dropdown);
+		
+		WebElement dropdown1 = driver.findElement(By....)
+		Select dd1 = new Select(dropdown1);
+		
+		
+		
+		
