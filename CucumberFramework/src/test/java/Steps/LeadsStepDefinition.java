@@ -175,4 +175,24 @@ public class LeadsStepDefinition {
     public void clickOnDeleteLink() {
         driver.findElement(By.linkText("Delete")).click();
     }
+
+    @And("Enter the {string} and {string} and click submit button")
+    public void enterTheCredentialsAndClickSubmitButton(String username,String password) {
+        driver.findElement(By.id("username")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.className("decorativeSubmit")).click();
+    }
+
+    @And("Check if we can land to home page {string}")
+    public void checkIfWeCanLandToHomePageSuccessfully(String flag) {
+        String title=driver.getTitle();
+        if(flag.contains("positive") && title.contains("Find Leads")){
+            System.out.println("Landed Successfully!");
+        }else if(flag.contains("negative")){
+            String errorText=driver.findElement(By.xpath("//div[@id='errorDiv']/p[2]")).getText();
+            if(errorText.contains("User not found")){
+                System.out.println("Negative Scenario Passed!");
+            }
+        }
+    }
 }
